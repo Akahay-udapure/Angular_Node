@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="mb-3">
+                <h3>Registeration Form</h3>
+            </div>
+            <form [formGroup]="regForm" class="shadow p-4">   
+                <div class="mb-2">
+                    <label for="Name">Name</label>
+                    <input type="name" class="form-control" formControlName="name" placeholder="Enter Name">
+                    <span class="text-danger" *ngIf="regForm.controls.name.errors && regForm.controls.name.touched">
+                        <br>Name is Required
+                    </span>
+                </div>
+
+                <div class="mb-2">
+                    <label for="Email">Email</label>
+                    <input type="email" class="form-control" formControlName="email" placeholder="Enter Email">
+                    <span class="text-danger" *ngIf="regForm.controls.email.errors && regForm.controls.email.touched">
+                        <br>Invalid Email Address
+                    </span>
+                </div>
+
+                <div class="mb-2">
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
+                </div>
+
+                <div class="mb-3">
+                    <label for="Mobile">mobile</label>
+                    <input type="mobile" class="form-control" formControlName="mobile" placeholder="Enter Mobile">
+                    <span class="text-danger" *ngIf="regForm.controls.mobile.errors && regForm.controls.mobile.touched">
+                        <br>Invalid Mobile Number
+                    </span>
+                </div>
+
+                <div class="mb-2">
+                    <button (click)="register(regForm)" type="submit" class="btn btn-primary" [disabled]="!regForm.valid">Register</button>
+                </div>
+                <hr>
+                <p class="text-center mb-0">If you have account <a href="#" routerLink="/login">Login Now</a></p>
+            </form>
+        </div>
+    </div>
+</div>

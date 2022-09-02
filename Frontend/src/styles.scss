@@ -1,0 +1,21 @@
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+
+.clickable{
+    cursor: pointer !important;
+}
+
+.editable{
+    border: none !important;
+    background: transparent;
+    border-bottom: dotted 1px !important;
+    border-radius: 0 !important;    
+}
+
+.asterisk{
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+    // font-size: 1.2em;
+}
+
