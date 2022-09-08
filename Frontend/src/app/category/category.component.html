@@ -1,0 +1,55 @@
+<div class="col-md-12 mt-3">
+    <div class="row split-block-row">
+        <div class="col-lg-10">
+            <div class="split-right-side-content slim-scroll">
+                <div class="col-sm-12">
+                    <h5 class="ml-3">
+                        My Category
+                    </h5>
+                    <div class="text-right">
+                        <button class="btn btn-primary btn-xs" (click)="editCategory(-1)">
+                            <small>+Add</small>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Each Page -->
+                <div class="col-sm-12">
+                    <div class="col-sm-12 mt-2">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No</th>
+                                    <th class="clickable">Category Name
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="text-align: center;"
+                                    *ngIf="during.fetchCategoryList">
+                                    <td colspan="25">
+                                        {{during.fetchCategoryList? "Loading ..." : "No Data"}}
+                                        <i [hidden]="!during.fetchCategoryList" class="fas fa-spinner fa-pulse"></i>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let category of tableData; index as i" [hidden]="during.fetchCategoryList" class="myClass">
+                                    <td>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        {{category.categoryName}}
+                                    </td>
+                                    <td>
+                                        <span (click)="deleteCategory(category._id)"><i class="fa fa-trash clickable" aria-hidden="true"></i></span>
+                                        <span class="ml-3 text-primary" (click)="editCategory(category._id)"><i class='fas fa-edit clickable'></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

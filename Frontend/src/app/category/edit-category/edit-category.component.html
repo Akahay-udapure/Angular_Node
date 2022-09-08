@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row py-3">
+        <div class="col-md-12">
+            <span *ngIf="catId == -1">Add Category</span>
+            <span *ngIf="catId != -1">Update Category</span>
+        </div>
+        <div class="col-md-12">
+            <div class="form-card align-items-stretch w-100">
+                <b>Category Name</b>
+                <input type="text" placeholder="" class="mb-1" [(ngModel)]="categoryToEdit.categoryName">
+            </div>
+        </div>
+        <div class="col-lg-12 px-2 mt-2" *ngIf="catId == -1">
+            <button class="btn btn-primary btn-sm" (click)="createCategory()">Save</button>
+            <button class="btn btn-danger btn-sm ml-2" (click)="close()">Cancel</button>
+        </div>
+        <div class="col-lg-12 px-2 mt-2" *ngIf="catId != -1">
+            <button class="btn btn-success btn-sm" (click)="updateCategory()">Update</button>
+            <button class="btn btn-danger btn-sm ml-2" (click)="close()">Cancel</button>
+        </div>
+    </div>
+</div>

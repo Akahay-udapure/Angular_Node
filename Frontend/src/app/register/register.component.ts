@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs'
 import { ApiService } from '../services/api.service';
 
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private _apiService: ApiService
+        private _apiService: ApiService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -28,11 +30,13 @@ export class RegisterComponent implements OnInit {
 
     register(regForm: any) {
         this._apiService.registerUser(regForm.value).subscribe(result => {
-            if (result.status == 200) {
-                alertify.success("Registred Successfully");
-                regForm.reset();
-            }else{
+            if (result.status == 400) {
                 alertify.error(result.message);
+                regForm.reset();
+            } else {
+                localStorage.setItem('token', result.token);
+                alertify.success(result.message);
+                this.router.navigate(['/login']);
             }
         })
     }

@@ -1,0 +1,67 @@
+<div class="col-md-12 mt-3">
+    <div class="row split-block-row">
+        <div class="col-lg-10">
+            <div class="split-right-side-content slim-scroll">
+                <div class="col-sm-12">
+                    <h5 class="ml-3">
+                        My Products
+                    </h5>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-primary btn-xs" (click)="editProduct(-1)">
+                            <small>+Add</small>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Each Page -->
+                <div class="col-sm-12">
+                    <div class="col-sm-12 mt-2">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No</th>
+                                    <th class="clickable">Product Name
+                                    </th>
+                                    <th class="clickable">Price</th>
+                                    <th class="clickable">Category</th>
+                                    <th class="clickable">Summery</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="text-align: center;" *ngIf="during.fetchProductList">
+                                    <td colspan="25">
+                                        {{during.fetchProductList? "Loading ..." : "No Data"}}
+                                        <i [hidden]="!during.fetchProductList" class="fas fa-spinner fa-pulse"></i>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let product of tableData; index as i" [hidden]="during.fetchProductList"
+                                    class="myClass">
+                                    <td>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        {{product.productName}}
+                                    </td>
+                                    <td>
+                                        {{product.price}}
+                                    </td>
+                                    <td>
+                                        {{product.categoryName}}
+                                    </td>
+                                    <td>
+                                        {{product.summery}}
+                                    </td>
+                                    <td>
+                                        <span (click)="deleteProduct(product._id)"><i class="fa fa-trash clickable" aria-hidden="true"></i></span>
+                                        <span class="ml-3 text-primary" (click)="editProduct(product._id)"><i class='fas fa-edit clickable'></i></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

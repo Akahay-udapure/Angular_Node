@@ -27,12 +27,14 @@ export class LoginComponent implements OnInit {
 
   login(loginForm:any){
       this._apiService.loginUser(loginForm.value).subscribe(result =>{
-          if(result.status == 200){
-              alertify.success("Registred Successfully");
-              this.router.navigate(['/navbar']);
-          }else{
+          if (result.status == 400) {
+            this.router.navigate(['/login']);
             alertify.error(result.message);
             loginForm.reset();
+          } else {
+            localStorage.setItem('token',  result.token);
+            alertify.success(result.message);
+            this.router.navigate(['/product']);
           }
       })
   }
